@@ -6,4 +6,7 @@
     .chat-icon{
         @apply h-6 text-gray-500 cursor-pointer hover:text-blue-500 active:scale-110 transition duration-200 ease-in-out
     }
+    .form-input{
+        @apply border-b-2 border-blue-300 outline-none bg-transparent mt-5
+    }
 }

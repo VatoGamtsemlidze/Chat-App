@@ -2,6 +2,7 @@ import Head from 'next/head'
 import React from "react";
 import firebase from '../firebase/clientApp'
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import {useRouter} from "next/router";
 
 const uiConfig = {
     signInSuccessUrl: "/",
@@ -9,11 +10,14 @@ const uiConfig = {
 }
 
 export default function Login() {
+
+    const router = useRouter();
+
     return (
         <div>
             <Head>
                 <title>Login</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.ico"/>
             </Head>
             <div className="flex justify-center mt-10">
                 <div className="p-10 md:p-20 rounded-2xl bg-blue-100">
@@ -23,14 +27,14 @@ export default function Login() {
                     <div className="pt-10">
                         <form className="flex flex-col text-lg">
                             <input placeholder="Email" className="border-b-2 border-blue-300 outline-none bg-transparent"/>
-                            <input placeholder="Password" className="border-b-2 border-blue-300 bg-transparent outline-none mt-5"/>
+                            <input placeholder="Password"type="password" className="border-b-2 border-blue-300 bg-transparent outline-none mt-5"/>
                             <button className="bg-blue-400 mt-10 rounded-full text-white hover:shadow-lg hover:scale-105 transition duration-200" type="submit" >Log in</button>
                             <div className="">
                                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                             </div>
                         </form>
                         <div className="pt-2 flex justify-center">
-                            <p className="text-gray-700">Or Register</p>
+                            <p className="text-gray-700 cursor-pointer hover:text-blue-400 active:scale-105 transition duration-150" onClick={() => router.push({pathname:'/register'})}>Or Register</p>
                         </div>
                     </div>
                 </div>

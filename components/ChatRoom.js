@@ -33,7 +33,7 @@ function ChatRoom(){
 
 
     return(
-        <div className="py-5 px-10">
+        <div className="py-5 md:px-10">
             <style jsx>{`
                 .messages{
                     min-height: 90vh
