@@ -6,13 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.4",
+    "email-validator": "^2.0.4",
+    "firebase": "^8.10.0",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-firebase-hooks": "^3.0.4",
+    "react-firebaseui": "^5.0.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.6",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.9",
+    "tailwindcss": "^2.2.17"
   }
 }
