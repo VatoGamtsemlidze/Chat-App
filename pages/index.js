@@ -7,11 +7,10 @@ export default function Home() {
     <div>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" />
       </Head>
         <section className="grid grid-cols-1 md:grid-cols-2 ">
             <Sidebar/>
-            <ChatRoom/>
         </section>
     </div>
   )

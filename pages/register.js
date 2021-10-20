@@ -1,23 +1,47 @@
 import Head from "next/head";
 import React, {useState} from "react";
-import {router} from "next/client";
 import firebase from "firebase";
 import 'firebase/auth'
+import {useFormik} from "formik";
+import {useRouter} from "next/router";
 
 const auth = firebase.auth()
 
 function Register(){
+
+    const router = useRouter();
 
     const [userData, setUserData] = useState({
         email: '',
         password: '',
     })
 
-    const registerUser = (e) => {
-        e.preventDefault()
-        auth.createUserWithEmailAndPassword(userData.email,userData.password) //error here for tomorrow 
+    const validate = values => {
+        let errors = {};
+
+        if(!values.email){
+            errors.email = 'Please enter your email'
+        }
+        if(!values.password){
+            errors.password = 'Enter Password'
+        }
+        if(values.password.length < 8 && values.password.length != 0){
+            errors.password = 'Password must be 8+ characters long'
+        }
+        return errors;
     }
 
+    const formik = useFormik({
+        initialValues:{
+            email:'',
+            password:''
+        },
+        validate,
+        onSubmit: values => {
+            console.log('registered')
+            auth.createUserWithEmailAndPassword(values.email, values.password).then(() => router.push({pathname:"/"})).catch(err => alert(err))
+        }
+    })
 
     return(
         <div>
@@ -31,9 +55,15 @@ function Register(){
                         <h1 className="text-4xl text-gray-800">Register &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                     </div>
                         <div className="pt-10">
-                            <form className="flex flex-col text-lg" onSubmit={registerUser}>
-                                <input type="email" value={userData.email} onChange={(e) => setUserData({email:e.target.value})} placeholder="Email" className="form-input"/>
-                                <input placeholder="Password" value={userData.password} onChange={(e)=>setUserData({password:e.target.value})} type="password" className="form-input"/>
+                            <form className="flex flex-col text-lg" onSubmit={formik.handleSubmit}>
+                                <input type="email" value={formik.values.email}
+                                       name="email"
+                                       onChange={formik.handleChange} placeholder="Email" className="form-input"/>
+                                {formik.errors.email && <div className="form-error" >{formik.errors.email}</div>}
+                                <input placeholder="Password" value={formik.values.password}
+                                       name="password"
+                                       onChange={formik.handleChange} type="password" className="form-input"/>
+                                {formik.errors.password && <div className="form-error">{formik.errors.password}</div>}
                                 <button className="bg-blue-400 mt-10 rounded-full py-2 text-white hover:shadow-lg hover:scale-105 transition duration-200" type="submit" >Sign Up</button>
                                 <div className="">
                                 </div>

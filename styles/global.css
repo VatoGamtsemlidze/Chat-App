@@ -9,4 +9,7 @@
     .form-input{
         @apply border-b-2 border-blue-300 outline-none bg-transparent mt-5
     }
+    .form-error{
+        @apply text-red-500 text-sm
+    }
 }
