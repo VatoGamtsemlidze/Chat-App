@@ -45,7 +45,7 @@ function ChatRoom({chat, messages}){
             message: input,
             user: user.email,
             photoURL: user.photoURL
-        });
+        }).catch(err=>console.log(err));
         setInput('')
     }
 

@@ -11,11 +11,6 @@ function Register(){
 
     const router = useRouter();
 
-    const [userData, setUserData] = useState({
-        email: '',
-        password: '',
-    })
-
     const validate = values => {
         let errors = {};
 

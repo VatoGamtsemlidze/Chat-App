@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import ChatRoom from "../../components/ChatRoom";
 import firebase from "firebase";
 import getRecipientEmail from "../../utils/getRecipientEmail";
+import {loadGetInitialProps} from "next/dist/shared/lib/utils";
 
 const auth = firebase.auth()
 
@@ -28,7 +29,7 @@ export async function getServerSideProps(context){
 
     const ref = firebase.firestore().collection ('chats').doc(context.query.id);
 
-    const messageRes = await ref.collection('messages').orderBy('timestamp','asc').get();
+    const messageRes = await ref.collection('messages').orderBy('timestamp','asc').get().catch(err=>console.log(err));
 
     const messages = messageRes.docs.map(doc => ({
         id: doc.id,
@@ -38,7 +39,7 @@ export async function getServerSideProps(context){
         timestamp: messages.timestamp.toDate().getTime()
     }))
 
-    const chatRes = await ref.get()
+    const chatRes = await ref.get().catch(err=>console.log(err))
 
     const chat = {
         id: chatRes.id,

@@ -1,4 +1,4 @@
-import {UserCircleIcon, ChatAltIcon} from "@heroicons/react/solid";
+import {ChatAltIcon} from "@heroicons/react/solid";
 import {LogoutIcon, SearchIcon} from "@heroicons/react/outline";
 import firebase from "firebase";
 import 'firebase/auth'
