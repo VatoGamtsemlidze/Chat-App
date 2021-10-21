@@ -48,10 +48,9 @@ function ChatRoom({chat, messages}){
         }).catch(err=>console.log(err));
         setInput('')
     }
-
     return(
         <div className="py-5 px-2 md:px-10 bg-gray-50 rounded-3xl">
-            <p className="bg-yellow-500 p-3">Name</p>
+            <p className="bg-yellow-500 p-3">{chat.users[1]}</p>
             <style jsx>{`
                 .messages{
                     min-height: 90vh

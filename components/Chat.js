@@ -21,7 +21,6 @@ function Chat({id, users}){
                 {recipient ? (
                     <img className="h-10 rounded-full" src={recipient?.photoURL} alt=""/>
                 ) : null}
-                {/*<UserCircleIcon className="h-10 text-gray-400" />*/}
                 <p className="pt-1 px-2">{recipient?.name}</p>
             </div>
         </div>
