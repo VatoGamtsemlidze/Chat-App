@@ -17,6 +17,7 @@ const firestore = firebase.firestore();
 function ChatRoom({chat, messages}){
 
     const user = auth.currentUser;
+
     const router = useRouter()
     const [input, setInput] = useState('');
     const [messagesSnapshot] = useCollection(firebase.firestore().collection('chats').doc(router.query.id).collection('messages').orderBy('timestamp','asc'))
@@ -27,6 +28,7 @@ function ChatRoom({chat, messages}){
                 <ChatMessage
                     key={message.id}
                     user={message.data().user}
+                    photoURL={message.data().photoURL}
                     message={{
                         ...message.data(),
                         timestamp: message.data().timestamp?.toDate().getTime()
